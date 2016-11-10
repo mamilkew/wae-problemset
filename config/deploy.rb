@@ -2,7 +2,7 @@
 lock '3.6.1'
 
 set :application, 'problemset'
-set :deploy_to, '/home/deploy/problemset'
+set :deploy_to, '/home/deploy/accommodation_office'
 set :repo_url, 'https://github.com/mamilkew/wae-problemset.git'
 set :passenger_restart_with_touch, true
 set :'rbenv_ruby', '2.3.1'
