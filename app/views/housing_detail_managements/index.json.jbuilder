@@ -1,0 +1,1 @@
+json.array! @housing_detail_managements, partial: 'housing_detail_managements/housing_detail_management', as: :housing_detail_management

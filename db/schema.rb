@@ -10,10 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161011101344) do
+ActiveRecord::Schema.define(version: 20161116144959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "housing_detail_managements", force: :cascade do |t|
+    t.string   "status"
+    t.string   "approval"
+    t.integer  "approved_user_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "editor_user_id"
+    t.index ["editor_user_id"], name: "index_housing_detail_managements_on_editor_user_id", using: :btree
+  end
+
+  create_table "housing_details", force: :cascade do |t|
+    t.string   "category_no"
+    t.string   "category_name"
+    t.string   "dorm"
+    t.decimal  "size",                          precision: 8, scale: 2
+    t.string   "air_con"
+    t.string   "balcony"
+    t.string   "bathroom"
+    t.string   "kitchen"
+    t.string   "furniture"
+    t.string   "cleaning"
+    t.text     "description"
+    t.integer  "rent"
+    t.integer  "housing_detail_managements_id"
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+    t.index ["housing_detail_managements_id"], name: "index_housing_details_on_housing_detail_managements_id", using: :btree
+  end
 
   create_table "officer_roles", force: :cascade do |t|
     t.string   "role"
@@ -45,5 +74,7 @@ ActiveRecord::Schema.define(version: 20161011101344) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "housing_detail_managements", "users", column: "editor_user_id"
+  add_foreign_key "housing_details", "housing_detail_managements", column: "housing_detail_managements_id"
   add_foreign_key "users", "officer_roles"
 end

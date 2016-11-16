@@ -6,7 +6,7 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.admin?
       can :manage, :all
-    elsif user.manager?
+    elsif user.supervisor?
       can :userlist, :administration
       can :activeuser, :administration
       can :statistics, :administration

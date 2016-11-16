@@ -1,0 +1,41 @@
+<% if housing_detail_management.status.present? then
+     housing_detail_management.status = '??'
+     housing_detail_management.approval = '??'
+   else
+     housing_detail_management.status = 'Editable'
+     housing_detail_management.approval = 'Waiting'
+   end
+%>
+
+<%= form_for(housing_detail_management) do |f| %>
+  <% if housing_detail_management.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(housing_detail_management.errors.count, "error") %> prohibited this housing_detail_management from being saved:</h2>
+
+      <ul>
+      <% housing_detail_management.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :status %>
+    <%= f.text_field :status %>
+  </div>
+
+  <div class="field">
+    <%= f.label :approval %>
+    <%= f.text_field :approval %>
+  </div>
+
+  <div class="field">
+    <%= f.label :approved_user_id %>
+    <%= f.number_field :approved_user_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

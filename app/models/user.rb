@@ -4,13 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :officer_role
+  has_many :housing_detail_managements
   validates_uniqueness_of :email
 
   def admin?
     self.officer_role.role == "Admin" if !self.officer_role.blank?
   end
-  def manager?
-    self.officer_role.role == "Manager" if !self.officer_role.blank?
+  def supervisor?
+    self.officer_role.role == "Supervisor" if !self.officer_role.blank?
   end
   def staff?
     self.officer_role.role == "Staff" if !self.officer_role.blank?

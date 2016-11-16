@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :housing_details
+  resources :housing_detail_managements
   get 'administration/userlist'
   get 'administration/banuser'
   get 'administration/activeuser'

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @housing_detail_management.status %>
+</p>
+
+<p>
+  <strong>Approval:</strong>
+  <%= @housing_detail_management.approval %>
+</p>
+
+<p>
+  <strong>Approved user:</strong>
+  <%= @housing_detail_management.approved_user_id %>
+</p>
+
+<%= link_to 'Edit', edit_housing_detail_management_path(@housing_detail_management) %> |
+<%= link_to 'Back', housing_detail_managements_path %>

@@ -1,0 +1,92 @@
+<% if HousingDetailManagement.all.order('id asc').last then %>
+    <% var_versionid = HousingDetailManagement.all.order('id asc').last.id  %>
+    <% housing_detail.housing_detail_managements_id = var_versionid + 1 %>
+<% else %>
+    <% housing_detail.housing_detail_managements_id = 1 %>
+<% end %>
+<script>
+
+
+</script>
+<%= form_for(housing_detail) do |f| %>
+  <% if housing_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(housing_detail.errors.count, "error") %> prohibited this housing_detail from being saved:</h2>
+
+      <ul>
+      <% housing_detail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :category_no %>
+    <%= f.text_field :category_no %>
+  </div>
+
+  <div class="field">
+    <%= f.label :category_name %>
+    <%= f.text_field :category_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :dorm %>
+    <%= f.text_field :dorm %>
+  </div>
+
+  <div class="field">
+    <%= f.label :size %>
+    <%= f.text_field :size %>
+  </div>
+
+  <div class="field">
+    <%= f.label :air_con %>
+    <%= f.text_field :air_con %>
+  </div>
+
+  <div class="field">
+    <%= f.label :balcony %>
+    <%= f.text_field :balcony %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bathroom %>
+    <%= f.text_field :bathroom %>
+  </div>
+
+  <div class="field">
+    <%= f.label :kitchen %>
+    <%= f.text_field :kitchen %>
+  </div>
+
+  <div class="field">
+    <%= f.label :furniture %>
+    <%= f.text_field :furniture %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cleaning %>
+    <%= f.text_field :cleaning %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :rent %>
+    <%= f.number_field :rent %>
+  </div>
+
+  <div class="field">
+    <%= f.label :housing_detail_managements_id %>
+    <%= f.number_field :housing_detail_managements_id, :readonly => true %>
+  </div>
+    <%= hidden_field_tag(:editor, current_user.id) %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

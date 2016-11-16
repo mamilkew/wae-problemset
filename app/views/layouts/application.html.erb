@@ -9,14 +9,15 @@
   </head>
 
   <body>
-    <!--<p class="notice"><%= notice %></p>-->
-    <!--<p class="alert"><%= alert %></p>-->
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
     <div id="container">
       <div id="user_status">
         <% if user_signed_in? %>
             Welcome
-            <%= current_user.email %> with <%= OfficerRole.find_by_id(current_user.officer_role_id).role %>
+            <%= current_user.email %> and ID: <%= current_user.id %>
+            with <%= OfficerRole.find_by_id(current_user.officer_role_id).role %>
             <%= link_to "Change Password", edit_user_registration_path %>
             <br>! Not you?
             <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
