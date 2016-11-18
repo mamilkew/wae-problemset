@@ -36,7 +36,8 @@ class HousingDetailsController < ApplicationController
 
     respond_to do |format|
       if @housing_detail.save
-        format.html { redirect_to @housing_detail, notice: 'Housing detail was successfully created.' }
+        format.html { redirect_to housing_detail_managements_path, notice: 'Housing detail was successfully created.' }
+        #format.html { redirect_to @housing_detail, notice: 'Housing detail was successfully created.' }
         format.json { render :show, status: :created, location: @housing_detail }
       else
         format.html { render :new }

@@ -1,9 +1,10 @@
 <% if housing_detail_management.status.present? then
-     housing_detail_management.status = '??'
-     housing_detail_management.approval = '??'
+     housing_detail_management.approved_user_id = current_user.id
+     housing_detail_management.status = 'Holding'
    else
-     housing_detail_management.status = 'Editable'
-     housing_detail_management.approval = 'Waiting'
+     housing_detail_management.approved_user_id = current_user.id
+     # housing_detail_management.status = 'Editable'
+     # housing_detail_management.approval = 'Waiting'
    end
 %>
 
@@ -27,11 +28,11 @@
 
   <div class="field">
     <%= f.label :approval %>
-    <%= f.text_field :approval %>
+    <%= select_tag(:approval, options_for_select([['Approve', 'Approve'], ['Reject', 'Reject']], selected: :option )) %>
   </div>
 
   <div class="field">
-    <%= f.label :approved_user_id %>
+    <%= f.label :approved_user_id, 'Approval User ID' %>
     <%= f.number_field :approved_user_id %>
   </div>
 

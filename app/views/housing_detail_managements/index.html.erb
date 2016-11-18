@@ -7,8 +7,9 @@
     <tr>
       <th>Version no.</th>
       <th>Status</th>
-      <th>Approval</th>
-      <th>Approved user</th>
+      <th>Approval status</th>
+      <th>Editor user id</th>
+      <th>Approver user id</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,9 +20,11 @@
         <td><%= housing_detail_management.id %></td>
         <td><%= housing_detail_management.status %></td>
         <td><%= housing_detail_management.approval %></td>
+        <td><%= User.find(housing_detail_management.editor_user_id).staff_id %></td>
         <td><%= housing_detail_management.approved_user_id %></td>
         <td><%= link_to 'Show', housing_detail_management %></td>
-        <td><%= link_to 'Edit', edit_housing_detail_management_path(housing_detail_management) %></td>
+        <td><%= link_to 'Review for Publishing', edit_housing_detail_management_path(housing_detail_management.id) %></td>
+        <!--<td><%# link_to 'Edit', edit_housing_detail_management_path(housing_detail_management) %></td>-->
         <td><%= link_to 'Destroy', housing_detail_management, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -30,4 +33,7 @@
 
 <br>
 
-<%= link_to 'New Housing Detail Management', new_housing_detail_management_path %>
+<%= link_to 'New Housing Detail', new_housing_detail_path %>
+<br><%= link_to 'See the Housing Detail', housing_details_path %>
+<%# link_to 'New Housing Detail Management', new_housing_detail_management_path #%>
+<br><%= link_to 'Back', root_path %>

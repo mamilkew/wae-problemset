@@ -5,7 +5,7 @@ class HousingDetailManagementsController < ApplicationController
   # GET /housing_detail_managements
   # GET /housing_detail_managements.json
   def index
-    @housing_detail_managements = HousingDetailManagement.all
+    @housing_detail_managements = HousingDetailManagement.all.order("id DESC")
   end
 
   # GET /housing_detail_managements/1
@@ -20,7 +20,12 @@ class HousingDetailManagementsController < ApplicationController
 
   # GET /housing_detail_managements/1/edit
   def edit
-    redirect_to housing_details_path
+    @housing_detail = HousingDetail.find_by(housing_detail_managements_id: @housing_detail_management.id)
+    if @housing_detail.present?
+      if @housing_detail_management.update(status: 'Holding')
+        redirect_to edit_housing_detail_path(@housing_detail)
+      end
+    end
   end
 
   # POST /housing_detail_managements
@@ -30,7 +35,8 @@ class HousingDetailManagementsController < ApplicationController
 
     respond_to do |format|
       if @housing_detail_management.save
-        format.html { redirect_to @housing_detail_management, notice: 'Housing detail management was successfully created.' }
+        format.html { redirect_to housing_detail_managements_path, notice: 'Housing detail management was successfully created.' }
+        #format.html { redirect_to @housing_detail_management, notice: 'Housing detail management was successfully created.' }
         format.json { render :show, status: :created, location: @housing_detail_management }
       else
         format.html { render :new }
