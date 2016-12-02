@@ -49,6 +49,11 @@ class HousingDetailsController < ApplicationController
   # PATCH/PUT /housing_details/1
   # PATCH/PUT /housing_details/1.json
   def update
+    @housing_detail_management = HousingDetailManagement.new
+    @housing_detail_management.status = 'Editable'
+    @housing_detail_management.approval = 'Waiting'
+    @housing_detail_management.editor_user_id = params[:editor]
+    @housing_detail_management.save
     respond_to do |format|
       if @housing_detail.update(housing_detail_params)
         format.html { redirect_to @housing_detail, notice: 'Housing detail was successfully updated.' }

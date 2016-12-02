@@ -7,9 +7,9 @@
     <tr>
       <th>Version no.</th>
       <th>Status</th>
-      <th>Approval status</th>
-      <th>Editor user id</th>
-      <th>Approver user id</th>
+      <th>Editor</th>
+      <th>Approval</th>
+      <th></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,9 +19,15 @@
       <tr>
         <td><%= housing_detail_management.id %></td>
         <td><%= housing_detail_management.status %></td>
+        <td><%= User.find(housing_detail_management.editor_user_id).name %></td>
         <td><%= housing_detail_management.approval %></td>
-        <td><%= User.find(housing_detail_management.editor_user_id).staff_id %></td>
-        <td><%= housing_detail_management.approved_user_id %></td>
+        <td> by
+          <% if housing_detail_management.approved_user_id? then %>
+               <%= User.find(housing_detail_management.approved_user_id).name %>
+          <% else %>
+          -
+          <% end %>
+        </td>
         <td><%= link_to 'Show', housing_detail_management %></td>
         <td><%= link_to 'Review for Publishing', edit_housing_detail_management_path(housing_detail_management.id) %></td>
         <!--<td><%# link_to 'Edit', edit_housing_detail_management_path(housing_detail_management) %></td>-->

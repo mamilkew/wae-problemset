@@ -17,7 +17,7 @@
         <% if user_signed_in? %>
             Welcome
             <%= current_user.email %> and ID: <%= current_user.id %>
-            with <%= OfficerRole.find_by_id(current_user.officer_role_id).role %>
+            with <%= current_user.officer_role.role %>
             <%= link_to "Change Password", edit_user_registration_path %>
             <br>! Not you?
             <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
